@@ -19,7 +19,7 @@ public class JacksonSerde<T> implements Serde<T> {
 	}
 
 	public JacksonSerde(Class<T> type, boolean smile) {
-		this(type, ObjectMapperProducer.get());
+		this(type, ObjectMapperProducer.get(smile));
 	}
 
 	public JacksonSerde(Class<T> type, ObjectMapper objectMapper) {

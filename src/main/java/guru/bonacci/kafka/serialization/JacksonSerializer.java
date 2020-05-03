@@ -11,33 +11,35 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JacksonSerializer<T> implements Serializer<T> {
 
-    private final ObjectMapper objectMapper;
+	private final ObjectMapper objectMapper;
 
-    
-    public JacksonSerializer() {
-        this(ObjectMapperProducer.get());
-    }
+	public JacksonSerializer() {
+		this(ObjectMapperProducer.get());
+	}
 
-    public JacksonSerializer(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
+	public JacksonSerializer(ObjectMapper objectMapper) {
+		this.objectMapper = objectMapper;
+	}
 
-    @Override
-    public void configure(Map<String, ?> configs, boolean isKey) {
-    	//TODO supply jackson config 
-    }
+	@Override
+	public void configure(Map<String, ?> configs, boolean isKey) {
+		// TODO supply jackson configuration options
+	}
 
-    @Override
-    public byte[] serialize(String topic, T data) {
-        try (ByteArrayOutputStream output = new ByteArrayOutputStream()) {
-            objectMapper.writeValue(output, data);
-            return output.toByteArray();
-        } catch (IOException e) {
-            throw new SerializationException(e);
-        }
-    }
+	@Override
+	public byte[] serialize(String topic, T data) {
+        if (data == null) 
+            return null;
+		
+		try (ByteArrayOutputStream output = new ByteArrayOutputStream()) {
+			objectMapper.writeValue(output, data);
+			return output.toByteArray();
+		} catch (IOException e) {
+			throw new SerializationException(e);
+		}
+	}
 
-    @Override
-    public void close() {
-    }
+	@Override
+	public void close() {
+	}
 }

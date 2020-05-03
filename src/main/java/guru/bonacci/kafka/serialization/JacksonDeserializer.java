@@ -27,7 +27,7 @@ public class JacksonDeserializer<T> implements Deserializer<T> {
 
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
-    	//TODO supply jackson config 
+		// TODO supply jackson configuration options
     }
 
     @Override
@@ -44,5 +44,9 @@ public class JacksonDeserializer<T> implements Deserializer<T> {
 
     @Override
     public void close() {
+    }
+    
+    Class<T> getType() {
+    	return type;
     }
 }
