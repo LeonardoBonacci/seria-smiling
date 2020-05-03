@@ -26,13 +26,17 @@ public class JacksonSerde<T> implements Serde<T> {
 		this.serializer = new JacksonSerializer<T>(objectMapper);
 		this.deserializer = new JacksonDeserializer<T>(type, objectMapper);
 	}
-
+	
 	public static final <T> JacksonSerde<T> of(Class<T> cls) {
 		return new JacksonSerde<>(cls);
 	}
 
 	public static final <T> JacksonSerde<T> of(Class<T> cls, boolean smile) {
 		return new JacksonSerde<>(cls, smile);
+	}
+
+	public static final <T> JacksonSerde<T> of(Class<T> cls, ObjectMapper objectMapper) {
+		return new JacksonSerde<>(cls, objectMapper);
 	}
 
 	@Override
