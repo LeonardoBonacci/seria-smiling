@@ -5,10 +5,13 @@ import com.fasterxml.jackson.dataformat.smile.SmileFactory;
 
 final class ObjectMapperProducer {
 
-    private ObjectMapperProducer() {
+    static ObjectMapper get() {
+    	return get(false);
     }
 
-    static ObjectMapper get() {
-        return new ObjectMapper(new SmileFactory());
+    static ObjectMapper get(boolean smile) {
+    	if (smile)
+    		return new ObjectMapper(new SmileFactory());
+    	else return new ObjectMapper();
     }
 }

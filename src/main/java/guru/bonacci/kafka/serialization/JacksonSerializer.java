@@ -4,25 +4,27 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Map;
 
+import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.serialization.Serializer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class SmilingSerializer<T> implements Serializer<T> {
+public class JacksonSerializer<T> implements Serializer<T> {
 
     private final ObjectMapper objectMapper;
 
-    public SmilingSerializer() {
+    
+    public JacksonSerializer() {
         this(ObjectMapperProducer.get());
     }
 
-    public SmilingSerializer(ObjectMapper objectMapper) {
+    public JacksonSerializer(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
-    	//TODO when jackson config can be supplied
+    	//TODO supply jackson config 
     }
 
     @Override
@@ -31,7 +33,7 @@ public class SmilingSerializer<T> implements Serializer<T> {
             objectMapper.writeValue(output, data);
             return output.toByteArray();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new SerializationException(e);
         }
     }
 
