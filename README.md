@@ -1,7 +1,8 @@
 # serialize-smiling
 A light weight library for Kafka serialization
 
-## resources
+## thanks to:
+* https://cr.openjdk.java.net/~briangoetz/amber/serialization.html
 * https://kafka.apache.org/documentation/streams/developer-guide/datatypes.html
 * https://debezium.io/documentation/reference/integrations/serdes.html
 * https://github.com/jcustenborder/kafka-jackson
