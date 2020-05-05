@@ -2,16 +2,17 @@ package guru.bonacci.kafka.serialization;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.smile.SmileFactory;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-final class ObjectMapperProducer {
+final class ObjectMapperSupplier {
 
     static ObjectMapper get() {
     	return get(false);
     }
 
     static ObjectMapper get(boolean smile) {
-    	if (smile)
-    		return new ObjectMapper(new SmileFactory());
-    	else return new ObjectMapper();
+    	ObjectMapper mapper = smile ? new ObjectMapper(new SmileFactory()) : new ObjectMapper();
+    	mapper.registerModule(new JavaTimeModule());
+    	return mapper;
     }
 }
