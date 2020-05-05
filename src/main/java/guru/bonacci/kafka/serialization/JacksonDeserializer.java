@@ -24,10 +24,7 @@ public class JacksonDeserializer<T> implements Deserializer<T> {
 	}
 
 	@Override
-	public void configure(Map<String, ?> configs, boolean isKey) {
-		// TODO isKey?
-		// TODO supply jackson configuration options?
-	}
+	public void configure(Map<String, ?> configs, boolean isKey) {}
 
 	@Override
 	public T deserialize(String topic, byte[] data) {
@@ -36,7 +33,7 @@ public class JacksonDeserializer<T> implements Deserializer<T> {
 
 		try {
 			return reader.readValue(data);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			throw new SerializationException(e);
 		}
 	}

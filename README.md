@@ -2,6 +2,7 @@
 A light weight library for Kafka serialization
 
 ## resources
+* https://kafka.apache.org/documentation/streams/developer-guide/datatypes.html
 * https://debezium.io/documentation/reference/integrations/serdes.html
 * https://github.com/jcustenborder/kafka-jackson
 * https://github.com/giladam/kafka-jackson-serde
