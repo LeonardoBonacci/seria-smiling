@@ -7,7 +7,7 @@
 	<version>1.0.0</version>
 
 	<properties>
-		<jackson.version>2.11.0</jackson.version>
+		<jackson.version>2.13.4.1</jackson.version>
 		<junit.version>5.7.0-M1</junit.version>
 		<mockito.version>3.3.3</mockito.version>
 	</properties>
